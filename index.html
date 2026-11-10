@@ -13,7 +13,7 @@
     --line:#dfe5ee; --bg:#f4f7fb; --ok:#127a4b; --warn:#b54708; --warn-bg:#fff6e8; --r:14px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Noto Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{font-family:'Noto Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
   .wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
   header{background:linear-gradient(140deg,var(--blue-d),var(--blue));color:#fff;padding:36px 20px 64px;text-align:center}
   header .brand{font-size:13px;font-weight:700;letter-spacing:.12em;opacity:.85}
@@ -56,6 +56,20 @@
   .done p{color:var(--sub);font-size:14px}
   .hidden{display:none}
   footer{text-align:center;font-size:12px;color:var(--sub);margin-top:28px;line-height:1.8}
+  .period{display:inline-block;margin-top:14px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 16px;font-size:14px;font-weight:700}
+  .poster{display:block;width:100%;border-radius:10px;border:1px solid var(--line)}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+  .fact{background:var(--bg);border-radius:10px;padding:10px 12px}
+  .fact small{display:block;font-size:12px;color:var(--sub)}
+  .fact b{font-size:14px;line-height:1.4;display:block}
+  .incl{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .incl span{font-size:13px;background:var(--blue-l);color:var(--blue-d);border-radius:999px;padding:4px 10px;font-weight:500}
+  .next{margin-top:14px;font-size:13px;color:var(--sub);display:grid;gap:6px}
+  .next b{color:var(--ink)}
+  .site{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:16px;border:1px solid var(--blue);color:var(--blue);border-radius:12px;padding:12px;font-weight:700;font-size:15px;text-decoration:none}
+  .pbox{background:var(--blue-l);border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:4px}
+  .pbox b{color:var(--blue-d)}
+  .closed{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:14px;font-size:15px;font-weight:700;text-align:center;margin-top:12px}
 </style>
 </head>
 <body>
@@ -63,11 +77,31 @@
   <div class="brand">ROBOMAKERS</div>
   <h1>월드로봇리그 2027 &amp;<br>로보레이브 코리아 오픈 2027<br>참가신청 안내</h1>
   <p>로보메이커스 원생 대상 캠프 · 대회 특강</p>
+  <div class="period">로보메이커스 접수 11. 23.(월) ~ 12. 4.(금)</div>
 </header>
 
 <div class="wrap">
   <section class="card first">
-    <h2><span class="no">1</span>참가비</h2>
+    <h2><span class="no">1</span>대회 안내</h2>
+    <a href="https://worldrobotleague.net" target="_blank" rel="noopener"><img class="poster" src="poster.jpg" alt="World Robot League 2027 with RoboRAVE Korea Open 2027 공식 포스터 — 2027년 2월 19일~21일, 고양 YMCA"></a>
+    <div class="facts">
+      <div class="fact"><small>일시</small><b>2027. 2. 19.(금) ~ 21.(일)<br>3일간</b></div>
+      <div class="fact"><small>장소</small><b>고양 YMCA<br>고양국제청소년문화센터</b></div>
+      <div class="fact"><small>대상</small><b>초 · 중 · 고 학생</b></div>
+      <div class="fact"><small>규모</small><b>8개 종목 23개 부문<br>한국 + 해외 6개국</b></div>
+    </div>
+    <div class="incl">
+      <span>2박 3일 숙박 (3~4인 1실)</span><span>식사 7식</span><span>단체복</span><span>참가증명서</span><span>기념 메달</span><span>보험</span>
+    </div>
+    <div class="next">
+      <div><b>RoboRAVE World Championship</b> · 2027. 11. 미국 휴스턴 — RoboRAVE 부문 상위 입상자</div>
+      <div><b>Maker Robot Challenge (MRC)</b> · 2027. 5. 태국 방콕 — WRL 휴머노이드 · 오셀로 우수자</div>
+    </div>
+    <a class="site" href="https://worldrobotleague.net" target="_blank" rel="noopener">대회 공식 사이트 worldrobotleague.net ›</a>
+  </section>
+
+  <section class="card">
+    <h2><span class="no">2</span>참가비</h2>
     <div class="fee">
       <div class="row"><span>캠프 참가비</span><span>550,000원</span></div>
       <div class="row"><span>대회 특강비</span><span>150,000원</span></div>
@@ -83,7 +117,7 @@
   </section>
 
   <section class="card">
-    <h2><span class="no">2</span>특강 일정</h2>
+    <h2><span class="no">3</span>특강 일정</h2>
     <div class="dates">
       <div class="date"><div class="m">1월</div><div class="d">17</div><div class="w">일요일</div></div>
       <div class="date"><div class="m">1월</div><div class="d">24</div><div class="w">일요일</div></div>
@@ -98,7 +132,9 @@
   </section>
 
   <section class="card" id="formCard">
-    <h2><span class="no">3</span>참가신청</h2>
+    <h2><span class="no">4</span>참가신청</h2>
+    <div class="pbox">로보메이커스 접수 기간 <b>2026. 11. 23.(월) ~ 12. 4.(금)</b></div>
+    <div class="closed hidden" id="closedMsg"></div>
     <form id="form" novalidate>
       <label for="name">참가 원생 이름 <span class="req">*</span></label>
       <input type="text" id="name" maxlength="20" autocomplete="off" placeholder="예) 홍길동">
@@ -157,6 +193,17 @@
   }
   $("copyBtn").onclick = e => copyAcct(e.target);
   $("copyBtn2").onclick = e => copyAcct(e.target);
+
+  // 로보메이커스 접수 기간 (한국 시간)
+  const OPEN_AT = new Date("2026-11-23T00:00:00+09:00");
+  const CLOSE_AT = new Date("2026-12-05T00:00:00+09:00"); // 12월 4일 자정까지
+  (function(){
+    const now = new Date();
+    let msg = "";
+    if (now < OPEN_AT) msg = "접수는 11월 23일(월)부터 시작합니다.";
+    else if (now >= CLOSE_AT) msg = "접수가 마감되었습니다. 문의 031-997-1177";
+    if (msg) { $("closedMsg").textContent = msg; $("closedMsg").classList.remove("hidden"); $("form").classList.add("hidden"); }
+  })();
 
   $("form").addEventListener("submit", async e => {
     e.preventDefault();
