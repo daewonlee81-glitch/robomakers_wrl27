@@ -197,13 +197,30 @@
   // 로보메이커스 접수 기간 (한국 시간)
   const OPEN_AT = new Date("2026-11-23T00:00:00+09:00");
   const CLOSE_AT = new Date("2026-12-05T00:00:00+09:00"); // 12월 4일 자정까지
-  (function(){
-    const now = new Date();
-    let msg = "";
-    if (now < OPEN_AT) msg = "접수는 11월 23일(월)부터 시작합니다.";
-    else if (now >= CLOSE_AT) msg = "접수가 마감되었습니다. 문의 031-997-1177";
-    if (msg) { $("closedMsg").textContent = msg; $("closedMsg").classList.remove("hidden"); $("form").classList.add("hidden"); }
-  })();
+  // 페이지를 열어둔 채로 자정이 지나도 새로고침 없이 신청서가 열리도록 1초마다 다시 검사
+  function regState(){ const n = Date.now(); return n < OPEN_AT ? "before" : n >= CLOSE_AT ? "after" : "open"; }
+  function countdown(){
+    const s = Math.max(0, Math.ceil((OPEN_AT - Date.now()) / 1000));
+    const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
+    const p = x => String(x).padStart(2, "0");
+    return (d ? d + "일 " : "") + p(h) + ":" + p(m) + ":" + p(sec);
+  }
+  let regTimer = null;
+  function updateReg(){
+    const st = regState();
+    const box = $("closedMsg");
+    if (st === "open") {
+      box.classList.add("hidden"); $("form").classList.remove("hidden");
+    } else {
+      box.textContent = st === "before"
+        ? "접수는 11월 23일(월) 0시부터 시작합니다. (남은 시간 " + countdown() + ")"
+        : "접수가 마감되었습니다. 문의 031-997-1177";
+      box.classList.remove("hidden"); $("form").classList.add("hidden");
+    }
+    if (st === "after" && regTimer) { clearInterval(regTimer); regTimer = null; }
+  }
+  updateReg();
+  if (regState() !== "after") regTimer = setInterval(updateReg, 1000);
 
   $("form").addEventListener("submit", async e => {
     e.preventDefault();
@@ -213,6 +230,7 @@
     const err = $("err");
     err.textContent = "";
 
+    if (regState() !== "open") { updateReg(); return; }
     if (!name) { err.textContent = "참가 원생 이름을 입력해주세요."; $("name").focus(); return; }
     if (!/^01[016789]-\d{3,4}-\d{4}$/.test(phone)) { err.textContent = "연락처를 정확히 입력해주세요. (예: 010-1234-5678)"; $("phone").focus(); return; }
     if (!$("agree").checked) { err.textContent = "개인정보 수집에 동의해주세요."; return; }
